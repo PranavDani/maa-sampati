@@ -1,0 +1,94 @@
+.quote {
+    display: flex;
+    text-align: center;
+    height: 10vh;
+    background: #ffecce;
+    font-weight: 500;
+    color: black;
+    font-size: 2rem;
+}
+
+h1{
+    text-align: center;
+    padding: 50px 0px;
+    font-weight: 400;
+}
+
+.internal {
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0px 10vw;
+    padding-bottom: 20px;
+}
+
+.category-img  {
+    position: relative;
+    width: 200px;
+    height: 200px;
+}
+
+.overlay{
+    position: absolute;
+    background: rgba(0, 0, 0, .5);
+    width: 200px;
+    height: 200px;
+    transition: .5s ease;
+    opacity:0;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    top: 0;
+}
+
+.category-card:hover .overlay {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.category-card h4{
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 400;
+}
+
+.contact input[type=text], textarea{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    resize: vertical
+}
+
+input[type=submit] {
+    background-color: #04AA6D;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.contact{
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    display: flex;
+    margin: 0px 15vw;
+}
+
+.group {
+    display: flex;
+    flex-direction: row;
+}
+
+.group .user-input {
+    flex: 1;
+}
