@@ -1,8 +1,12 @@
+* {
+    scroll-behavior: smooth;
+}
+
 .quote {
     display: flex;
     text-align: center;
     height: 10vh;
-    background: #ffecce;
+    background-image: linear-gradient(#ffecce, transparent);
     font-weight: 500;
     color: black;
     font-size: 2rem;
@@ -91,4 +95,42 @@ input[type=submit]:hover {
 
 .group .user-input {
     flex: 1;
+}
+
+.carousel {
+    max-height: 85vh;
+}
+
+.carousel-item img{
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-item h2 {
+    position: absolute;
+    text-align: center;
+    top: 40%;
+    left: 10%;
+    color: white;
+    font-size: 2rem;
+    text-shadow: -2px 2px 2px black;
+}
+
+.carousel-item button {
+    color: white;
+    position: absolute;
+    top:50%;
+    left: 10%;
+    border: 2px solid black;
+    border-radius: 4px;
+    padding: 1.25rem 1.75rem;
+    font-size: large;
+    line-height: 1;
+    background-color: rgba(0,0,0,0.5);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.carousel-item button:hover{
+    background: rgba(0,0,0,0.7);
 }
