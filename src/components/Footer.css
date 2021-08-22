@@ -2,7 +2,6 @@ footer{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border-top: 1px solid black;
 }
 
 footer h5 {
@@ -13,13 +12,15 @@ footer h5 {
     float: left;
     min-height: 1px;
     margin: 5vh;
+    border-top: dotted #8E734A 6px;
+    padding-top: 20px;
 }
 
 .copyrights{
     display: flex;
     text-align: center;
     padding: 25px;
-    background:#8E734A;
+    background:#000000;
     color: rgb(255, 255, 255);
     justify-content: space-evenly;
     width: 100vw;
@@ -32,5 +33,5 @@ footer h5 {
 }
 
 .copyrights a:hover {
-    color: black;
+    color: rgb(173, 173, 173);
 }

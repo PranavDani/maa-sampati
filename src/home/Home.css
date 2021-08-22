@@ -2,14 +2,9 @@
     scroll-behavior: smooth;
 }
 
-.quote {
-    display: flex;
-    text-align: center;
+.transition-shade {
     height: 10vh;
     background-image: linear-gradient(#ffecce, transparent);
-    font-weight: 500;
-    color: black;
-    font-size: 2rem;
 }
 
 h1{
@@ -134,4 +129,20 @@ input[type=submit]:hover {
 
 .carousel-item button:hover{
     background: rgba(0,0,0,0.7);
+}
+
+.contact button{
+    color: white;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 0.7rem 2rem;
+    font-size: small;
+    line-height: 1;
+    background-color: #8E734A;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.contact button:hover{
+    background-color: rgba(142, 115, 74, .8);
 }

@@ -46,7 +46,7 @@ function Home() {
           <Item key={index} title={item.title} image={item.image} />
         ))}
       </Carousel>
-      <div className="quote">Marble is forever.</div>
+      <div className="transition-shade"></div>
 
       <h1>CATEGORIES</h1>
       <section className="categories">
