@@ -50,16 +50,16 @@ function Home() {
 
       <h1>CATEGORIES</h1>
       <section className="categories">
-        <div className="internal">
-          <Card title="INDIAN MARBLE" img="indian-marble.jpg" />
-          <Card title="IMPORTED MARBLE" img="imported-marble.jpg" />
-          <Card title="INDIAN GRANITE" img="indian-granite.jpg" />
-        </div>
-        <div className="internal">
-          <Card title="IMPORTED GRANITE" img="imported-granite.jpg" />
-          <Card title="STONE" img="stone.jpg" />
-          <Card title="COMPOSITE" img="composite.jpg" />
-        </div>
+        {/* <div className="internal"> */}
+        <Card title="INDIAN MARBLE" img="indian-marble.jpg" />
+        <Card title="IMPORTED MARBLE" img="imported-marble.jpg" />
+        <Card title="INDIAN GRANITE" img="indian-granite.jpg" />
+        {/* </div> */}
+        {/* <div className="internal"> */}
+        <Card title="IMPORTED GRANITE" img="imported-granite.jpg" />
+        <Card title="STONE" img="stone.jpg" />
+        <Card title="COMPOSITE" img="composite.jpg" />
+        {/* </div> */}
       </section>
 
       <h1>CONTACT US</h1>

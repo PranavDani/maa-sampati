@@ -13,12 +13,19 @@ h1{
     font-weight: 400;
 }
 
-.internal {
+.categories {
     position: relative;
-    display: flex;
+    display: grid;
     justify-content: space-evenly;
     padding: 0px 10vw;
     padding-bottom: 20px;
+    grid-gap: 1rem;
+    grid-gap: 1rem;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 3fr));
+    /* grid-auto-rows: 300px; */
+    justify-items: center;
+    /* justify-content: space-around; */
 }
 
 .category-img  {
@@ -40,7 +47,11 @@ h1{
     top: 0;
 }
 
-.category-card:hover .overlay {
+.category-card{
+    position: relative;
+}
+
+.category-card .overlay:hover {
     opacity: 1;
     cursor: pointer;
 }
