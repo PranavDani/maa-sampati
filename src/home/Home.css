@@ -1,5 +1,6 @@
 * {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 .transition-shade {
@@ -156,4 +157,15 @@ input[type=submit]:hover {
 
 .contact button:hover{
     background-color: rgba(142, 115, 74, .8);
+}
+
+
+@media only screen and (max-width: 500px) {
+    .group {
+        display: block;
+    }
+
+    .contact{
+        margin: 0px 5vw;
+    }
 }

@@ -78,7 +78,6 @@ function Home() {
               <input type="text" placeholder="Your Email" />
             </div>
           </div>
-
           <label htmlFor="">Message</label>
           <textarea
             rows={5}
