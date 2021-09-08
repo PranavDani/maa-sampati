@@ -27,6 +27,11 @@
     background: black;
 }
 
+.header a{
+    text-decoration: none;
+    color: black;
+}
+
 
 .header-list {
     width: 50%;
@@ -50,16 +55,22 @@
     color: #777;
     text-decoration: none;
     list-style: none;
+    justify-content: space-evenly;
 }
 
-.rightheader li {
-    list-style: none;
-    padding: 26px 5px;
+.rightheader svg{
+    color: grey;
+    margin: 0px 10px;
 }
 
-.rightheader li a:hover {
+.rightheader svg:hover {
     text-decoration: none;
     color: rgb(49, 49, 49);
+}
+
+.logo a{
+    text-decoration: none;
+    color: black;
 }
 
 .logo{
@@ -89,4 +100,3 @@
         display: none;
     }
 }
-
