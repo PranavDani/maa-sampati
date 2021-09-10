@@ -1,0 +1,20 @@
+.gridview-card img  {
+    position: relative;
+    width: 200px;
+    height: 200px;
+}
+.gridview-card{
+    position: relative;
+}
+
+.gridview-card .overlay:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.gridview-card h4{
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 400;
+}
+

@@ -1,4 +1,4 @@
-import "../Home.css";
+import "./Card.css";
 
 interface CardProps {
   title: string;
@@ -7,9 +7,8 @@ interface CardProps {
 
 const Card = (props: CardProps) => {
   return (
-    <div className="category-card">
+    <div className="gridview-card">
       <img
-        className="category-img"
         src={`${process.env.PUBLIC_URL}/assets/categories/${props.img}`}
         alt=""
       />

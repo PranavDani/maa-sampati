@@ -14,7 +14,7 @@ h1{
     font-weight: 400;
 }
 
-.categories {
+.gridview {
     position: relative;
     display: grid;
     justify-content: space-evenly;
@@ -29,12 +29,6 @@ h1{
     /* justify-content: space-around; */
 }
 
-.category-img  {
-    position: relative;
-    width: 200px;
-    height: 200px;
-}
-
 .overlay{
     position: absolute;
     background: rgba(0, 0, 0, .5);
@@ -46,21 +40,6 @@ h1{
     font-size: 20px;
     text-align: center;
     top: 0;
-}
-
-.category-card{
-    position: relative;
-}
-
-.category-card .overlay:hover {
-    opacity: 1;
-    cursor: pointer;
-}
-
-.category-card h4{
-    margin-top: 10px;
-    text-align: center;
-    font-weight: 400;
 }
 
 .contact input[type=text], textarea{

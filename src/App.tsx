@@ -3,6 +3,7 @@ import Footer from "./components/Footer";
 import Home from "./home/Home";
 import Quotation from "./quotation/Quotation";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Products from "./products/Products";
 
 export interface AppProps {}
 
@@ -16,8 +17,11 @@ const App: React.FunctionComponent<AppProps> = () => {
             <Route exact path="/">
               <Home />
             </Route>
-            <Route exact path="/quotation">
+            <Route path="/quotation">
               <Quotation />
+            </Route>
+            <Route path="/products">
+              <Products />
             </Route>
           </Switch>
         </div>

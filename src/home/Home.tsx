@@ -1,7 +1,7 @@
 // import Slider from "react-animated-slider";
 import "react-animated-slider/build/horizontal.css";
 import "./Home.css";
-import Card from "./components/card";
+import Card from "../components/Card";
 import React from "react";
 import Carousel from "react-material-ui-carousel";
 import { Paper } from "@material-ui/core";
@@ -49,7 +49,7 @@ function Home() {
       <div className="transition-shade"></div>
 
       <h1>CATEGORIES</h1>
-      <section className="categories">
+      <section className="gridview">
         {/* <div className="internal"> */}
         <Card title="INDIAN MARBLE" img="indian-marble.jpg" />
         <Card title="IMPORTED MARBLE" img="imported-marble.jpg" />
