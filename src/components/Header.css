@@ -45,7 +45,7 @@
 
 .header-list li:hover {
     text-decoration: none;
-    color: rgb(179, 179, 179);
+    color: #8E734A;
     cursor: pointer;
 }
 
@@ -59,13 +59,13 @@
 }
 
 .rightheader svg{
-    color: grey;
+    color: black;
     margin: 0px 10px;
 }
 
 .rightheader svg:hover {
     text-decoration: none;
-    color: rgb(49, 49, 49);
+    color: #8E734A;
 }
 
 .logo a{

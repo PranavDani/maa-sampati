@@ -14,7 +14,9 @@ function Header() {
       </Link>
 
       <ul className="header-list">
-        <li>PRODUCTS</li>
+        <Link to="/products">
+          <li>PRODUCTS</li>
+        </Link>
         <li>CONTACT US</li>
         <li>ABOUT US</li>
       </ul>
