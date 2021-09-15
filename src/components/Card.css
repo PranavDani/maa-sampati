@@ -7,6 +7,11 @@
     position: relative;
 }
 
+.gridview a{
+    text-decoration: none;
+    color: black;
+}
+
 .gridview-card .overlay:hover {
     opacity: 1;
     cursor: pointer;

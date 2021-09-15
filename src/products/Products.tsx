@@ -2,6 +2,7 @@ import React, { FunctionComponent } from "react";
 import Card from "../components/Card";
 import { FilterList } from "@material-ui/icons";
 import "./products.css";
+import { Link } from "react-router-dom";
 
 interface ProductsProps {}
 
@@ -23,7 +24,9 @@ const Products: FunctionComponent<ProductsProps> = () => {
 
       <section className="gridview">
         {[...Array(10)].map((_, i) => (
-          <Card title={`COMPOSITE ${i}`} img="imported-granite.jpg" />
+          <Link to="/product">
+            <Card title={`COMPOSITE ${i}`} img="imported-granite.jpg" />
+          </Link>
         ))}
       </section>
     </>
