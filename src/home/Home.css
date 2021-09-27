@@ -122,7 +122,7 @@ input[type=submit]:hover {
     background: rgba(0,0,0,0.7);
 }
 
-.contact button{
+.contact input[type=submit] {
     color: white;
     border: 1px solid black;
     border-radius: 4px;
@@ -134,7 +134,7 @@ input[type=submit]:hover {
     cursor: pointer;
 }
 
-.contact button:hover{
+.contact input[type=submit]:hover{
     background-color: rgba(142, 115, 74, .8);
 }
 
