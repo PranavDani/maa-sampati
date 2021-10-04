@@ -6,6 +6,7 @@ import React from "react";
 import Carousel from "react-material-ui-carousel";
 import { Paper, Snackbar } from "@material-ui/core";
 import { onContactUs } from "../Apis";
+import useFetch from "../useFetch";
 
 interface CarouselItemProps {
   title: string;
@@ -29,6 +30,7 @@ const content: Array<CarouselItemProps> = [
 
 function Home() {
   const [open, setOpen] = React.useState(false);
+  const { data: product, isPending, error } = useFetch("some url");
 
   const showSnackBar = () => {
     setOpen(true);
@@ -97,7 +99,13 @@ function Home() {
       <section className="contact">
         <form action="" onSubmit={handleSubmit}>
           <label htmlFor="">Name</label>
-          <input type="text" name="uname" placeholder="Your Name" required />
+          <input
+            type="text"
+            name="uname"
+            pattern="^[a-zA-Z ]*$"
+            placeholder="Your Name"
+            required
+          />
           <div className="group">
             <div className="user-input">
               <label htmlFor="">Phone number</label>
@@ -105,6 +113,7 @@ function Home() {
                 type="text"
                 placeholder="Your Phone no"
                 name="phone"
+                pattern="^[0-9]{10}$"
                 required
               />
             </div>
@@ -115,6 +124,7 @@ function Home() {
                 type="text"
                 placeholder="Your Email"
                 name="email"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                 required
               />
             </div>

@@ -1,10 +1,49 @@
 import "./Quotation.css";
 import React, { FunctionComponent } from "react";
 import { Delete } from "@material-ui/icons";
+import { useState } from "react";
+import { useHistory } from "react-router";
+import { Paper, Snackbar } from "@material-ui/core";
 
 interface QuotationProps {}
 
 const Quotation: FunctionComponent<QuotationProps> = () => {
+  const [open, setOpen] = React.useState(false);
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [location, setLocation] = useState("");
+  const [isPending, setIsPending] = useState(false);
+  const history = useHistory();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("execute ho gaya");
+    const order = { name, phone, email, message, location };
+    setIsPending(true);
+
+    console.log("Post Pending");
+    console.log(order);
+
+    console.log("Reset form");
+    e.target.reset();
+    showSnackBar();
+  };
+  const showSnackBar = () => {
+    setOpen(true);
+  };
+  const handleClose = (
+    event: React.SyntheticEvent | React.MouseEvent,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   return (
     <div className="quotation">
       <h1>REQUEST FOR QUOTATION</h1>
@@ -25,18 +64,39 @@ const Quotation: FunctionComponent<QuotationProps> = () => {
         />
       </table>
       <section className="contact">
-        <form action="">
+        <form action="" onSubmit={handleSubmit}>
           <label htmlFor="">Name</label>
-          <input type="text" placeholder="Your Name" />
+          <input
+            type="text"
+            name="uname"
+            onChange={(e) => setName(e.target.value)}
+            pattern="^[a-zA-Z ]*$"
+            placeholder="Your Name"
+            required
+          />
           <div className="group">
             <div className="user-input">
               <label htmlFor="">Phone number</label>
-              <input type="text" placeholder="Your Phone no" />
+              <input
+                type="text"
+                placeholder="Your Phone no"
+                name="phone"
+                onChange={(e) => setPhone(e.target.value)}
+                pattern="^[0-9]{10}$"
+                required
+              />
             </div>
             <div style={{ width: "10px" }}></div>
             <div className="user-input">
               <label htmlFor="">Email</label>
-              <input type="text" placeholder="Your Email" />
+              <input
+                type="text"
+                placeholder="Your Email"
+                name="email"
+                onChange={(e) => setEmail(e.target.value)}
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                required
+              />
             </div>
           </div>
           <label htmlFor="">Anything We need to keep in mind?</label>
@@ -45,14 +105,29 @@ const Quotation: FunctionComponent<QuotationProps> = () => {
             name=""
             id=""
             cols={30}
+            onChange={(e) => setMessage(e.target.value)}
             placeholder="Marbles should be polished..."
           ></textarea>
           <label htmlFor="">Project Location</label>
-          <input type="text" placeholder="Project Location" />
+          <input
+            type="text"
+            placeholder="Project Location"
+            onChange={(e) => setLocation(e.target.value)}
+          />
 
           <button>Request Quotation</button>
         </form>
       </section>
+      <Snackbar
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+        open={open}
+        autoHideDuration={2000}
+        onClose={handleClose}
+        message="You will soon receive our response"
+      />
     </div>
   );
 };
