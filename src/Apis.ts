@@ -1,6 +1,13 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { addDoc, collection, getFirestore } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  getFirestore,
+  getDocs,
+  getDoc,
+  doc,
+} from "firebase/firestore";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
@@ -19,7 +26,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const store = getFirestore(app);
 
-export async function onContactUs(
+async function onContactUs(
   name: string,
   phone: string,
   email: string,
@@ -37,4 +44,20 @@ export async function onContactUs(
   return docRef;
 }
 
-export default onContactUs;
+async function getData(store) {
+  const prod = collection(store, "products");
+  const prodSnapshot = await getDocs(prod);
+  const productList = prodSnapshot.docs.map((doc) => doc.data());
+  // console.log(productList);
+  return productList;
+}
+
+async function getProduct(id: string) {
+  const prod = doc(store, "products", id);
+  const prodSnapshot = await getDoc(prod);
+  const productList = prodSnapshot.data();
+  console.log(productList);
+  return productList;
+}
+
+export { onContactUs, getData, store, getProduct };

@@ -5,8 +5,10 @@ import Card from "../components/Card";
 import React from "react";
 import Carousel from "react-material-ui-carousel";
 import { Paper, Snackbar } from "@material-ui/core";
-import { onContactUs } from "../Apis";
+import { onContactUs, getData, store } from "../Apis";
 import useFetch from "../useFetch";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 interface CarouselItemProps {
   title: string;
@@ -30,7 +32,18 @@ const content: Array<CarouselItemProps> = [
 
 function Home() {
   const [open, setOpen] = React.useState(false);
-  const { data: product, isPending, error } = useFetch("some url");
+  // const { data: product, isPending, error } = useFetch("some url");
+  const [products, setProducts] = useState([]) as any;
+  // const result = products.filter((product) => product.type());
+  // console.log(products);
+  // console.log(result);
+
+  useEffect(() => {
+    getData(store).then((data) => {
+      // console.log(data);
+      setProducts(data);
+    });
+  }, []);
 
   const showSnackBar = () => {
     setOpen(true);
@@ -87,12 +100,32 @@ function Home() {
 
       <h1>CATEGORIES</h1>
       <section className="gridview">
-        <Card title="INDIAN MARBLE" img="indian-marble.jpg" />
-        <Card title="IMPORTED MARBLE" img="imported-marble.jpg" />
-        <Card title="INDIAN GRANITE" img="indian-granite.jpg" />
-        <Card title="IMPORTED GRANITE" img="imported-granite.jpg" />
-        <Card title="STONE" img="stone.jpg" />
-        <Card title="COMPOSITE" img="composite.jpg" />
+        <Card
+          title="INDIAN MARBLE"
+          img={`${process.env.PUBLIC_URL}/assets/categories/indian-marble.jpg`}
+        />
+        <Card
+          title="IMPORTED MARBLE"
+          img={`${process.env.PUBLIC_URL}/assets/categories/imported-marble.jpg`}
+        />
+        <Card
+          title="INDIAN GRANITE"
+          img={`${process.env.PUBLIC_URL}/assets/categories/indian-granite.jpg`}
+        />
+        <Card
+          title="IMPORTED GRANITE"
+          img={`${process.env.PUBLIC_URL}/assets/categories/imported-granite.jpg`}
+        />
+        <Card
+          title="STONE"
+          img={`${process.env.PUBLIC_URL}/assets/categories/stone.jpg`}
+        />
+        <Link to="/products/?type=composite&origin=all">
+          <Card
+            title="COMPOSITE"
+            img={`${process.env.PUBLIC_URL}/assets/categories/composite.jpg`}
+          />
+        </Link>
       </section>
 
       <h1>CONTACT US</h1>

@@ -8,10 +8,7 @@ interface CardProps {
 const Card = (props: CardProps) => {
   return (
     <div className="gridview-card">
-      <img
-        src={`${process.env.PUBLIC_URL}/assets/categories/${props.img}`}
-        alt=""
-      />
+      <img src={props.img} alt="" />
       <div className="overlay"></div>
       <h4>{props.title}</h4>
     </div>

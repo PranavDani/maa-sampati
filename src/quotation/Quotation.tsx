@@ -3,7 +3,7 @@ import React, { FunctionComponent } from "react";
 import { Delete } from "@material-ui/icons";
 import { useState } from "react";
 import { useHistory } from "react-router";
-import { Paper, Snackbar } from "@material-ui/core";
+import { Snackbar } from "@material-ui/core";
 
 interface QuotationProps {}
 
@@ -23,8 +23,13 @@ const Quotation: FunctionComponent<QuotationProps> = () => {
     const order = { name, phone, email, message, location };
     setIsPending(true);
 
+    localStorage.setItem("testObject", JSON.stringify(order));
+
     console.log("Post Pending");
     console.log(order);
+
+    // let retrievedObject = localStorage.getItem("testObject");
+    // console.log(retrievedObject);
 
     console.log("Reset form");
     e.target.reset();

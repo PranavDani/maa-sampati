@@ -3,10 +3,22 @@ import Card from "../components/Card";
 import { FilterList } from "@material-ui/icons";
 import "./products.css";
 import { Link } from "react-router-dom";
+import { getData, store } from "../Apis";
+import { useEffect, useState } from "react";
 
 interface ProductsProps {}
 
 const Products: FunctionComponent<ProductsProps> = () => {
+  const [products, setProducts] = useState([]) as any;
+  console.log(products);
+  // console.log(result);
+
+  useEffect(() => {
+    getData(store).then((data) => {
+      // console.log(data);
+      setProducts(data);
+    });
+  }, []);
   return (
     <>
       <div className="focus-image">
@@ -23,9 +35,9 @@ const Products: FunctionComponent<ProductsProps> = () => {
       </button>
 
       <section className="gridview">
-        {[...Array(10)].map((_, i) => (
-          <Link to="/product">
-            <Card title={`COMPOSITE ${i}`} img="imported-granite.jpg" />
+        {products.map((product) => (
+          <Link to={`/product/06r47pllGonVl3Jshjcq`}>
+            <Card title={product.name} img={product.img} />
           </Link>
         ))}
       </section>
