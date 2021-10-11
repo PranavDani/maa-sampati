@@ -15,24 +15,10 @@ const Products: FunctionComponent<ProductsProps> = () => {
   let query = useQuery();
   const type = query.get("type");
   const origin = query.get("origin");
-  // console.log(type);
-  // console.log(origin);
 
   useEffect(() => {
-    getData(store).then((data) => {
-      if (type) {
-        let final = data.filter(function (e) {
-          if (origin) {
-            return e.type == type && e.origin == origin;
-          } else {
-            return e.type == type;
-          }
-        });
-        setProducts(final);
-      } else {
+    getData(origin, type).then((data) => {
         setProducts(data);
-      }
-      // console.log(final);
     });
   }, []);
   return (

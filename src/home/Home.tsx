@@ -32,19 +32,8 @@ const content: Array<CarouselItemProps> = [
 
 function Home() {
   const [open, setOpen] = React.useState(false);
-  // const { data: product, isPending, error } = useFetch("some url");
-  const [products, setProducts] = useState([]) as any;
-  // const result = products.filter((product) => product.type());
-  // console.log(products);
-  // console.log(result);
-  // const [currentUrl, setCurrentUrl] = useState()
 
-  useEffect(() => {
-    getData(store).then((data) => {
-      // console.log(data);
-      setProducts(data);
-    });
-  }, []);
+  useEffect(() => {}, []);
 
   const showSnackBar = () => {
     setOpen(true);

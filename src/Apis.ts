@@ -7,6 +7,8 @@ import {
   getDocs,
   getDoc,
   doc,
+  query,
+  where,
 } from "firebase/firestore";
 import { useLocation } from "react-router-dom";
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -45,11 +47,10 @@ async function onContactUs(
   return docRef;
 }
 
-async function getData(store) {
-  const prod = collection(store, "products");
-  const prodSnapshot = await getDocs(prod);
+async function getData(origin: string|null, type: string|null) {
+  const q = query(collection(store, "products"), where("origin", "==", origin), where("type", "==", type));
+  const prodSnapshot = await getDocs(q);
   const productList = prodSnapshot.docs.map((doc) => doc.data());
-  // console.log(productList);
   return productList;
 }
 
