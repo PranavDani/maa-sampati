@@ -1,24 +1,22 @@
 import React, { FunctionComponent } from "react";
 import "./product.css";
 import Card from "../components/Card";
-import { getProduct, useQuery } from "../Apis";
+import { getProduct, ProductData } from "../Apis";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 
 interface ProductProps {}
 
 const Product: FunctionComponent<ProductProps> = () => {
-  const [product, setProduct] = useState({}) as any;
-  let query = useQuery();
-  const type = query.get("id");
-
-  // console.log(result);
+  const [product, setProduct] = useState<ProductData>({} as ProductData);
+  const {id} = useParams("id");
 
   useEffect(() => {
-    getProduct("06r47pllGonVl3Jshjcq").then((data) => {
-      // console.log(data);
+    getProduct(id).then((data) => {
       setProduct(data);
     });
   }, []);
+
   return (
     <>
       <div className="product-header">

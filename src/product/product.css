@@ -25,7 +25,6 @@
 
 .product-header img{
     width: 35vw;
-    filter: brightness(50%);
     object-fit: cover;
 }
 

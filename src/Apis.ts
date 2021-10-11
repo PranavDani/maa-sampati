@@ -11,10 +11,17 @@ import {
   where,
 } from "firebase/firestore";
 import { useLocation } from "react-router-dom";
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+export interface ProductData {
+  id: string;
+  name: string;
+  colors: string[];
+  type: string;
+  origin: string;
+  img: string;
+}
+
 const firebaseConfig = {
   apiKey: "AIzaSyB1IBSJlqo6UwSQdVKmI1-_duHJKz8RKfU",
   authDomain: "edjwjj.firebaseapp.com",
@@ -47,19 +54,25 @@ async function onContactUs(
   return docRef;
 }
 
-async function getData(origin: string|null, type: string|null) {
+async function getData(origin: string|null, type: string|null) : Promise<ProductData[]> {
   const q = query(collection(store, "products"), where("origin", "==", origin), where("type", "==", type));
   const prodSnapshot = await getDocs(q);
-  const productList = prodSnapshot.docs.map((doc) => doc.data());
+  console.log(prodSnapshot);
+  const productList = prodSnapshot.docs.map((doc) => {
+    const product : ProductData = doc.data() as ProductData;
+    product.id = doc.id;
+    return product;
+  });
   return productList;
 }
 
 async function getProduct(id: string) {
   const prod = doc(store, "products", id);
   const prodSnapshot = await getDoc(prod);
-  const productList = prodSnapshot.data();
-  console.log(productList);
-  return productList;
+  const product = prodSnapshot.data() as ProductData;
+  product.id = prodSnapshot.id;
+  console.log(product);
+  return product;
 }
 
 function useQuery() {

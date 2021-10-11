@@ -3,14 +3,14 @@ import Card from "../components/Card";
 import { FilterList } from "@material-ui/icons";
 import "./products.css";
 import { Link } from "react-router-dom";
-import { getData, store, useQuery } from "../Apis";
+import { getData, store, useQuery , ProductData} from "../Apis";
 import { useEffect, useState } from "react";
 // import { query } from "@firebase/firestore";
 
 interface ProductsProps {}
 
 const Products: FunctionComponent<ProductsProps> = () => {
-  const [products, setProducts] = useState([]) as any;
+  const [products, setProducts] = useState<ProductData[]>([]);
   console.log(products);
   let query = useQuery();
   const type = query.get("type");
@@ -38,7 +38,7 @@ const Products: FunctionComponent<ProductsProps> = () => {
 
       <section className="gridview">
         {products.map((product) => (
-          <Link to={`/product/06r47pllGonVl3Jshjcq`}>
+          <Link to={`/product/${product.id}`}>
             <Card title={product.name} img={product.img} />
           </Link>
         ))}
