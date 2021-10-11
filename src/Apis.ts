@@ -8,6 +8,7 @@ import {
   getDoc,
   doc,
 } from "firebase/firestore";
+import { useLocation } from "react-router-dom";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
@@ -60,4 +61,8 @@ async function getProduct(id: string) {
   return productList;
 }
 
-export { onContactUs, getData, store, getProduct };
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
+export { onContactUs, getData, store, getProduct, useQuery };

@@ -1,13 +1,16 @@
 import React, { FunctionComponent } from "react";
 import "./product.css";
 import Card from "../components/Card";
-import { getProduct } from "../Apis";
+import { getProduct, useQuery } from "../Apis";
 import { useEffect, useState } from "react";
 
 interface ProductProps {}
 
 const Product: FunctionComponent<ProductProps> = () => {
   const [product, setProduct] = useState({}) as any;
+  let query = useQuery();
+  const type = query.get("id");
+
   // console.log(result);
 
   useEffect(() => {

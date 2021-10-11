@@ -37,6 +37,7 @@ function Home() {
   // const result = products.filter((product) => product.type());
   // console.log(products);
   // console.log(result);
+  // const [currentUrl, setCurrentUrl] = useState()
 
   useEffect(() => {
     getData(store).then((data) => {
@@ -100,27 +101,37 @@ function Home() {
 
       <h1>CATEGORIES</h1>
       <section className="gridview">
-        <Card
-          title="INDIAN MARBLE"
-          img={`${process.env.PUBLIC_URL}/assets/categories/indian-marble.jpg`}
-        />
-        <Card
-          title="IMPORTED MARBLE"
-          img={`${process.env.PUBLIC_URL}/assets/categories/imported-marble.jpg`}
-        />
-        <Card
-          title="INDIAN GRANITE"
-          img={`${process.env.PUBLIC_URL}/assets/categories/indian-granite.jpg`}
-        />
-        <Card
-          title="IMPORTED GRANITE"
-          img={`${process.env.PUBLIC_URL}/assets/categories/imported-granite.jpg`}
-        />
-        <Card
-          title="STONE"
-          img={`${process.env.PUBLIC_URL}/assets/categories/stone.jpg`}
-        />
-        <Link to="/products/?type=composite&origin=all">
+        <Link to="/products/?type=marble&origin=indian">
+          <Card
+            title="INDIAN MARBLE"
+            img={`${process.env.PUBLIC_URL}/assets/categories/indian-marble.jpg`}
+          />
+        </Link>
+        <Link to="/products/?type=marble&origin=imported">
+          <Card
+            title="IMPORTED MARBLE"
+            img={`${process.env.PUBLIC_URL}/assets/categories/imported-marble.jpg`}
+          />
+        </Link>
+        <Link to="/products/?type=granite&origin=indian">
+          <Card
+            title="INDIAN GRANITE"
+            img={`${process.env.PUBLIC_URL}/assets/categories/indian-granite.jpg`}
+          />
+        </Link>
+        <Link to="/products/?type=granite&origin=imported">
+          <Card
+            title="IMPORTED GRANITE"
+            img={`${process.env.PUBLIC_URL}/assets/categories/imported-granite.jpg`}
+          />
+        </Link>
+        <Link to="/products/?type=stone&origin=">
+          <Card
+            title="STONE"
+            img={`${process.env.PUBLIC_URL}/assets/categories/stone.jpg`}
+          />
+        </Link>
+        <Link to="/products/?type=composite&origin=">
           <Card
             title="COMPOSITE"
             img={`${process.env.PUBLIC_URL}/assets/categories/composite.jpg`}

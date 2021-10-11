@@ -3,20 +3,36 @@ import Card from "../components/Card";
 import { FilterList } from "@material-ui/icons";
 import "./products.css";
 import { Link } from "react-router-dom";
-import { getData, store } from "../Apis";
+import { getData, store, useQuery } from "../Apis";
 import { useEffect, useState } from "react";
+// import { query } from "@firebase/firestore";
 
 interface ProductsProps {}
 
 const Products: FunctionComponent<ProductsProps> = () => {
   const [products, setProducts] = useState([]) as any;
   console.log(products);
-  // console.log(result);
+  let query = useQuery();
+  const type = query.get("type");
+  const origin = query.get("origin");
+  // console.log(type);
+  // console.log(origin);
 
   useEffect(() => {
     getData(store).then((data) => {
-      // console.log(data);
-      setProducts(data);
+      if (type) {
+        let final = data.filter(function (e) {
+          if (origin) {
+            return e.type == type && e.origin == origin;
+          } else {
+            return e.type == type;
+          }
+        });
+        setProducts(final);
+      } else {
+        setProducts(data);
+      }
+      // console.log(final);
     });
   }, []);
   return (
