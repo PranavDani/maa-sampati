@@ -1,43 +1,32 @@
 import "./Quotation.css";
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useEffect } from "react";
 import { Delete } from "@material-ui/icons";
 import { useState } from "react";
-import { useHistory } from "react-router";
-import { Snackbar } from "@material-ui/core";
+import { IconButton, Snackbar } from "@material-ui/core";
+import { ProductData } from "../Apis";
 
-interface QuotationProps {}
+interface QuotationProps { }
 
 const Quotation: FunctionComponent<QuotationProps> = () => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [location, setLocation] = useState("");
-  const [isPending, setIsPending] = useState(false);
-  const history = useHistory();
+  const [products, setProducts] = useState<CartRowProps[]>([] as CartRowProps[]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("execute ho gaya");
     const order = { name, phone, email, message, location };
-    setIsPending(true);
-
-    localStorage.setItem("testObject", JSON.stringify(order));
-
-    console.log("Post Pending");
-    console.log(order);
-
-    // let retrievedObject = localStorage.getItem("testObject");
-    // console.log(retrievedObject);
-
-    console.log("Reset form");
     e.target.reset();
     showSnackBar();
   };
+
   const showSnackBar = () => {
     setOpen(true);
   };
+
   const handleClose = (
     event: React.SyntheticEvent | React.MouseEvent,
     reason?: string
@@ -49,6 +38,38 @@ const Quotation: FunctionComponent<QuotationProps> = () => {
     setOpen(false);
   };
 
+  function allStorage(): ProductData[] {
+    var archive: ProductData[] = [],
+      keys = Object.keys(localStorage),
+      i = keys.length;
+
+    while (i--) {
+      archive.push(JSON.parse(localStorage.getItem(keys[i]) as string));
+    }
+
+    return archive;
+  }
+
+  const getProducts = () => {
+    const products: CartRowProps[] = [];
+    const data = allStorage();
+    for (let i = 0; i < data.length; i++) {
+      const product = data[i];
+      products.push({
+        id: product.id,
+        title: product.name,
+        image: product.img,
+        quantity: 1,
+        depth: 100,
+        width: 100,
+        height: 100,
+      } as CartRowProps);
+    }
+    setProducts(products);
+  };
+
+  useEffect(() => getProducts(), []);
+
   return (
     <div className="quotation">
       <h1>REQUEST FOR QUOTATION</h1>
@@ -59,14 +80,24 @@ const Quotation: FunctionComponent<QuotationProps> = () => {
           <th>Quantity</th>
           <th></th>
         </tr>
-        <CartRow
-          image="imported-granite.jpg"
-          depth={10}
-          height={10}
-          width={10}
-          quantity={2}
-          title="Some marble"
-        />
+        {
+          products.map((product, index) => (
+            <CartRow
+              key={product.id}
+              id={product.id}
+              image={product.image}
+              depth={product.depth}
+              height={product.height}
+              width={product.width}
+              quantity={product.quantity}
+              title={product.title}
+              onDelete={(id) => {
+                localStorage.removeItem(id);
+                getProducts();
+              }}
+            />
+          ))
+        }
       </table>
       <section className="contact">
         <form action="" onSubmit={handleSubmit}>
@@ -138,12 +169,14 @@ const Quotation: FunctionComponent<QuotationProps> = () => {
 };
 
 interface CartRowProps {
+  id: string;
   image: string;
   title: string;
   height: number;
   width: number;
   depth: number;
   quantity: number;
+  onDelete: (id: string) => void;
 }
 
 const CartRow: FunctionComponent<CartRowProps> = (props: CartRowProps) => {
@@ -153,7 +186,7 @@ const CartRow: FunctionComponent<CartRowProps> = (props: CartRowProps) => {
         <div className="product-details">
           <img
             height="100px"
-            src={`${process.env.PUBLIC_URL}/assets/categories/${props.image}`}
+            src={props.image}
             alt={props.title}
           />
           <h3>{props.title}</h3>
@@ -168,7 +201,9 @@ const CartRow: FunctionComponent<CartRowProps> = (props: CartRowProps) => {
         <p>{props.quantity}</p>
       </td>
       <td>
-        <Delete />
+        <IconButton onClick={() => props.onDelete(props.id)}>
+          <Delete />
+        </IconButton>
       </td>
     </tr>
   );
