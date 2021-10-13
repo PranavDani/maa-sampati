@@ -1,6 +1,7 @@
-.quotation{
+.quotation {
     padding-top: 100px;
 }
+
 
 /* table{
     width: 100%;
@@ -15,8 +16,9 @@ table {
     margin-right: auto;
     margin-bottom: 50px;
 }
-  
-td, th {
+
+td,
+th {
     border: 1px solid #000000;
     text-align: center;
     padding: 20px;
@@ -26,6 +28,24 @@ td, th {
     display: flex;
 }
 
-.product-details h3{
+.product-details h3 {
     padding-left: 50px;
+}
+
+.cart-row input[type=number]::-webkit-inner-spin-button,
+ ::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    opacity: 0;
+}
+
+.cart-row input[type=number] {
+    width: 5rem;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.cart-row p {
+    margin-top: 5px;
 }

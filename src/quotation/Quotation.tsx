@@ -76,7 +76,7 @@ const Quotation: FunctionComponent<QuotationProps> = () => {
       <table>
         <tr>
           <th>Product</th>
-          <th>Dimensions</th>
+          <th>Dimensions(in cms)</th>
           <th>Quantity</th>
           <th></th>
         </tr>
@@ -94,6 +94,9 @@ const Quotation: FunctionComponent<QuotationProps> = () => {
               onDelete={(id) => {
                 localStorage.removeItem(id);
                 getProducts();
+              }}
+              onChange={(item) => {
+                setProducts(products.map((p) => (p.id === item.id ? item : p)));
               }}
             />
           ))
@@ -177,11 +180,12 @@ interface CartRowProps {
   depth: number;
   quantity: number;
   onDelete: (id: string) => void;
+  onChange: (cartProp: CartRowProps) => void;
 }
 
 const CartRow: FunctionComponent<CartRowProps> = (props: CartRowProps) => {
   return (
-    <tr>
+    <tr className="cart-row">
       <td>
         <div className="product-details">
           <img
@@ -194,11 +198,37 @@ const CartRow: FunctionComponent<CartRowProps> = (props: CartRowProps) => {
       </td>
       <td>
         <p>
-          {props.height} x {props.width} x {props.depth}
+          Height: <input type="number" min={1} placeholder={"100"} onChange={(e) => {
+            props.onChange({
+              ...props,
+              height: parseInt(e.target.value)
+            })
+          }} />
+        </p>
+        <p>
+          Width: <input type="number" min={1} placeholder={"100"} onChange={(e) => {
+            props.onChange({
+              ...props,
+              width: parseInt(e.target.value)
+            })
+          }} />
+        </p>
+        <p>
+          Depth: <input type="number" min={1} placeholder={"5"} onChange={(e) => {
+            props.onChange({
+              ...props,
+              depth: parseInt(e.target.value)
+            })
+          }} />
         </p>
       </td>
       <td>
-        <p>{props.quantity}</p>
+        <input type="number" min={1} placeholder={"100"} onChange={(e) => {
+          props.onChange({
+            ...props,
+            quantity: parseInt(e.target.value)
+          })
+        }} />
       </td>
       <td>
         <IconButton onClick={() => props.onDelete(props.id)}>
