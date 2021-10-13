@@ -9,6 +9,9 @@ import { onContactUs, getData, store } from "../Apis";
 import useFetch from "../useFetch";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Label } from "@material-ui/icons";
+import Favicon from 'react-favicon'
+import MapSection from '../components/Map' // import the map here
 
 interface CarouselItemProps {
   title: string;
@@ -32,8 +35,11 @@ const content: Array<CarouselItemProps> = [
 
 function Home() {
   const [open, setOpen] = React.useState(false);
-
-  useEffect(() => {}, []);
+  const location = {
+    // address: 'Maa Sampati marble & granites',
+    lat: 19.096500,
+    lng: 72.853350,
+  }
 
   const showSnackBar = () => {
     setOpen(true);
@@ -49,6 +55,7 @@ function Home() {
 
     setOpen(false);
   };
+
 
   function Item(props: CarouselItemProps) {
     return (
@@ -78,6 +85,7 @@ function Home() {
       showSnackBar();
     }
   };
+
 
   return (
     <div>
@@ -129,52 +137,76 @@ function Home() {
       </section>
 
       <h1>CONTACT US</h1>
-      <section className="contact">
-        <form action="" onSubmit={handleSubmit}>
-          <label htmlFor="">Name</label>
-          <input
-            type="text"
-            name="uname"
-            pattern="^[a-zA-Z ]*$"
-            placeholder="Your Name"
-            required
-          />
-          <div className="group">
-            <div className="user-input">
-              <label htmlFor="">Phone number</label>
-              <input
-                type="text"
-                placeholder="Your Phone no"
-                name="phone"
-                pattern="^[0-9]{10}$"
-                required
-              />
+      <div className="box">
+        <div className="contact">
+          <form action="" onSubmit={handleSubmit}>
+            <label htmlFor="">Name</label>
+            <input
+              type="text"
+              name="uname"
+              pattern="^[a-zA-Z ]*$"
+              placeholder="Your Name"
+              required
+            />
+            <div className="group">
+              <div className="user-input">
+                <label htmlFor="">Phone number</label>
+                <input
+                  type="text"
+                  placeholder="Your Phone no"
+                  name="phone"
+                  pattern="^[0-9]{10}$"
+                  required
+                />
+              </div>
+              <div style={{ width: "10px" }}></div>
+              <div className="user-input">
+                <label htmlFor="">Email</label>
+                <input
+                  type="text"
+                  placeholder="Your Email"
+                  name="email"
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                  required
+                />
+              </div>
             </div>
-            <div style={{ width: "10px" }}></div>
-            <div className="user-input">
-              <label htmlFor="">Email</label>
-              <input
-                type="text"
-                placeholder="Your Email"
-                name="email"
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                required
-              />
-            </div>
-          </div>
-          <label htmlFor="">Message</label>
-          <textarea
-            rows={5}
-            name="message"
-            id=""
-            cols={30}
-            placeholder="Write your requirement"
-            required
-          ></textarea>
+            <label htmlFor="">Message</label>
+            <textarea
+              rows={5}
+              name="message"
+              id=""
+              cols={30}
+              placeholder="Write your requirement"
+              required
+            ></textarea>
 
-          <input type="submit" value="Submit" />
-        </form>
-      </section>
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
+        <div className="info">
+          <section>
+            <i className="fas fa-map-marker-alt"></i>
+            <label>    Dr. Rajendra Prasad Nagar, Navpada, Vile Parle East, Mumbai, Maharashtra 400047</label>
+          </section>
+
+          <a href="tel:9321028200">
+            <i className="fas fa-phone-square-alt">  9321028200</i>
+
+          </a>
+
+          <a href="mailto:maasampati.mum@gmail.com">
+            <i className="fas fa-envelope-open-text"></i>
+            <label>    maasampati.mum@gmail.com</label>
+          </a>
+
+          <a href="https://wa.me/919321028200"><i className="fab fa-whatsapp-square"></i>
+          </a>
+        </div>
+      </div>
+
+
+      <MapSection location={location} zoomLevel={17} /> {/* include it here */}
 
       <Snackbar
         anchorOrigin={{

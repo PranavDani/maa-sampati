@@ -14,9 +14,31 @@ function Header() {
       </Link>
 
       <ul className="header-list">
-        <Link to="/products">
-          <li>PRODUCTS</li>
-        </Link>
+        <li>
+          <Link to="/products">
+            <a aria-haspopup="true">PRODUCTS</a>
+          </Link>
+          {/* <ul className="dropdown" aria-label="submenu">
+            <li className="menu-item">
+              <a>Indian Marble</a>
+            </li>
+            <li className="menu-item">
+              <a>Imported Marble</a>
+            </li>
+            <li className="menu-item">
+              <a>Indian Granite</a>
+            </li>
+            <li className="menu-item">
+              <a>Imported Granite</a>
+            </li>
+            <li className="menu-item">
+              <a>Stone</a>
+            </li>
+            <li className="menu-item">
+              <a>Composite</a>
+            </li>
+          </ul> */}
+        </li>
         <li>CONTACT US</li>
         <li>ABOUT US</li>
       </ul>

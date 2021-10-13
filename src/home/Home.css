@@ -71,8 +71,8 @@ input[type=submit]:hover {
     background-color: #f2f2f2;
     padding: 20px;
     display: flex;
-    margin: 0px 15vw;
     margin-bottom: 20px;
+    justify-content: flex-start;
 }
 
 .group {
@@ -148,3 +148,46 @@ input[type=submit]:hover {
         margin: 0px 5vw;
     }
 }
+
+
+
+
+/* Info */
+
+.info {
+    text-align: left;
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    display: flex;
+    flex-direction: column;
+    height: initial;
+    align-items: flex-start;
+    border-radius: 5px;
+    padding: 10px;
+    height: 400px;
+    width: 25%;
+  }
+
+  .info section,a{
+      padding: 10px;
+  }
+
+  .box{
+      display: flex;
+    /* border: 1px solid #000000; */
+  }
+
+  a{
+      text-decoration: none;
+      color: black;
+  }
+
+  i{
+    /* font-size: 3em; */
+    color: black;
+  }
+
+  .fa-whatsapp-square{
+    font-size: 3em;
+  }

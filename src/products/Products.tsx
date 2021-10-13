@@ -3,7 +3,7 @@ import Card from "../components/Card";
 import { FilterList } from "@material-ui/icons";
 import "./products.css";
 import { Link } from "react-router-dom";
-import { getData, store, useQuery , ProductData} from "../Apis";
+import { getData, store, useQuery, ProductData } from "../Apis";
 import { useEffect, useState } from "react";
 // import { query } from "@firebase/firestore";
 
@@ -17,7 +17,7 @@ const Products: FunctionComponent<ProductsProps> = () => {
 
   useEffect(() => {
     getData(origin, type).then((data) => {
-        setProducts(data);
+      setProducts(data);
     });
   }, []);
   return (
@@ -27,7 +27,11 @@ const Products: FunctionComponent<ProductsProps> = () => {
           src={`${process.env.PUBLIC_URL}/assets/categories/imported-granite.jpg`}
           alt=""
         />
-        <h1>COMPOSITE MARBLE</h1>
+        {{ origin } && { type } ? (
+          <h1>
+            {origin} {type}
+          </h1>
+        ) : null}
       </div>
       <div className="transition-shade"></div>
 
