@@ -11,7 +11,6 @@ interface ProductsProps {}
 
 const Products: FunctionComponent<ProductsProps> = () => {
   const [products, setProducts] = useState<ProductData[]>([]);
-  console.log(products);
   let query = useQuery();
   const type = query.get("type");
   const origin = query.get("origin");
@@ -38,7 +37,7 @@ const Products: FunctionComponent<ProductsProps> = () => {
 
       <section className="gridview">
         {products.map((product) => (
-          <Link to={`/product/${product.id}`}>
+          <Link key={product.id} to={`/product/${product.id}`}>
             <Card title={product.name} img={product.img} />
           </Link>
         ))}

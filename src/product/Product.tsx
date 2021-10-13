@@ -4,18 +4,51 @@ import Card from "../components/Card";
 import { getProduct, ProductData } from "../Apis";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { Snackbar } from "@material-ui/core";
 
-interface ProductProps {}
+interface ProductProps { }
 
 const Product: FunctionComponent<ProductProps> = () => {
   const [product, setProduct] = useState<ProductData>({} as ProductData);
-  const {id} = useParams("id");
+  const [open, setOpen] = React.useState(false);
+  const { id } = useParams("id");
+
+  useEffect(() => { }, []);
+
+  const showSnackBar = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (
+    event: React.SyntheticEvent | React.MouseEvent,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   useEffect(() => {
     getProduct(id).then((data) => {
       setProduct(data);
     });
   }, []);
+
+  function isRequestedForQuote(): boolean {
+    return localStorage.getItem(product.id) != null;
+  }
+
+  function addForQuote() {
+    localStorage.setItem(product.id, JSON.stringify(product));
+    showSnackBar();
+  }
+
+  function removeFromQuote() {
+    localStorage.removeItem(product.id);
+    showSnackBar();
+  }
 
   return (
     <>
@@ -33,7 +66,9 @@ const Product: FunctionComponent<ProductProps> = () => {
             {/* <p>Some good info About this product</p> */}
           </div>
           <div className="action-buttons">
-            <button>Add for Quotation</button>
+            <button onClick={() => isRequestedForQuote() ? removeFromQuote() : addForQuote()}>
+              {isRequestedForQuote() ? "Remove" : "Add"} for Quotation
+            </button>
             <button>Enquire Now</button>
           </div>
         </div>
@@ -53,6 +88,17 @@ const Product: FunctionComponent<ProductProps> = () => {
         <Card title="STONE" img="stone.jpg" />
         <Card title="COMPOSITE" img="composite.jpg" />
       </section> */}
+
+      <Snackbar
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+        open={open}
+        autoHideDuration={2000}
+        onClose={handleClose}
+        message={`${product.name} is ${isRequestedForQuote() ? "added" : "removed"} for quotation`}
+      />
     </>
   );
 };

@@ -57,7 +57,6 @@ async function onContactUs(
 async function getData(origin: string|null, type: string|null) : Promise<ProductData[]> {
   const q = query(collection(store, "products"), where("origin", "==", origin), where("type", "==", type));
   const prodSnapshot = await getDocs(q);
-  console.log(prodSnapshot);
   const productList = prodSnapshot.docs.map((doc) => {
     const product : ProductData = doc.data() as ProductData;
     product.id = doc.id;
@@ -71,7 +70,6 @@ async function getProduct(id: string) {
   const prodSnapshot = await getDoc(prod);
   const product = prodSnapshot.data() as ProductData;
   product.id = prodSnapshot.id;
-  console.log(product);
   return product;
 }
 
