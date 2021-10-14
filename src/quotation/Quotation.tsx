@@ -44,8 +44,9 @@ const Quotation: FunctionComponent<QuotationProps> = () => {
       i = keys.length;
 
     while (i--) {
-      if (localStorage.getItem(keys[i])?.startsWith("iconify"))
+      if (keys[i]?.startsWith("iconify"))
         continue;
+
       archive.push(JSON.parse(localStorage.getItem(keys[i]) as string));
     }
 
