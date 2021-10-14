@@ -3,7 +3,7 @@ import React, { FunctionComponent, useEffect } from "react";
 import { Delete } from "@material-ui/icons";
 import { useState } from "react";
 import { IconButton, Snackbar } from "@material-ui/core";
-import { ProductData } from "../Apis";
+import { ProductData, addForQuote, QuoteProduct } from "../Apis";
 
 interface QuotationProps { }
 
@@ -18,9 +18,23 @@ const Quotation: FunctionComponent<QuotationProps> = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const order = { name, phone, email, message, location };
-    e.target.reset();
-    showSnackBar();
+    const dataProds = products.map((prod) => {
+      return {
+        id: prod.id,
+        title: prod.title,
+        image: prod.image,
+        quantity: prod.quantity,
+        height: prod.height,
+        width: prod.width,
+        depth: prod.depth,
+      } as QuoteProduct;
+    });
+    addForQuote(name, phone, email, message, location, dataProds).then((res) => {
+      showSnackBar();
+      localStorage.clear();
+      getProducts();
+      e.target.reset();
+    });
   };
 
   const showSnackBar = () => {

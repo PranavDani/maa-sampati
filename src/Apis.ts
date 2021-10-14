@@ -22,6 +22,16 @@ export interface ProductData {
   img: string;
 }
 
+export interface QuoteProduct {
+  id: string;
+  image: string;
+  title: string;
+  height: number;
+  width: number;
+  depth: number;
+  quantity: number;
+}
+
 const firebaseConfig = {
   apiKey: "AIzaSyB1IBSJlqo6UwSQdVKmI1-_duHJKz8RKfU",
   authDomain: "edjwjj.firebaseapp.com",
@@ -54,11 +64,11 @@ async function onContactUs(
   return docRef;
 }
 
-async function getData(origin: string|null, type: string|null) : Promise<ProductData[]> {
+async function getData(origin: string | null, type: string | null): Promise<ProductData[]> {
   const q = query(collection(store, "products"), where("origin", "==", origin), where("type", "==", type));
   const prodSnapshot = await getDocs(q);
   const productList = prodSnapshot.docs.map((doc) => {
-    const product : ProductData = doc.data() as ProductData;
+    const product: ProductData = doc.data() as ProductData;
     product.id = doc.id;
     return product;
   });
@@ -77,4 +87,22 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-export { onContactUs, getData, store, getProduct, useQuery };
+async function addForQuote(
+  name: string,
+  phone: string,
+  email: string,
+  message: string,
+  location: string,
+  products: QuoteProduct[]
+) {
+  const requirement = await addDoc(collection(store, "forQuote"), {
+    name, phone, email, message, location,
+  });
+
+  const data = products.map(product => addDoc(collection(store, "forQuote", requirement.id, "products"), { ...product }));
+  const result = await Promise.allSettled(data);
+  console.log(result);
+  return result;
+}
+
+export { onContactUs, getData, store, getProduct, useQuery, addForQuote };

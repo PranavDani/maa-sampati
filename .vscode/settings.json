@@ -3,5 +3,8 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
-  "cmake.configureOnOpen": false
+  "cmake.configureOnOpen": false,
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  }
 }
