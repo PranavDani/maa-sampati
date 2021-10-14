@@ -5,7 +5,6 @@ import { getProduct, ProductData } from "../Apis";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Snackbar } from "@material-ui/core";
-
 interface ProductProps { }
 
 const Product: FunctionComponent<ProductProps> = () => {
@@ -69,7 +68,9 @@ const Product: FunctionComponent<ProductProps> = () => {
             <button onClick={() => isRequestedForQuote() ? removeFromQuote() : addForQuote()}>
               {isRequestedForQuote() ? "Remove" : "Add"} for Quotation
             </button>
-            <button>Enquire Now</button>
+            <a href="https://wa.me/919321028200">
+              <button>Enquire Now</button>
+            </a>
           </div>
         </div>
       </div>

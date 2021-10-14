@@ -49,3 +49,24 @@ th {
 .cart-row p {
     margin-top: 5px;
 }
+
+.info-form{
+    justify-content: center;
+}
+
+.quotation{
+    display: flex;
+    flex-direction: column;
+}
+
+.request{
+    color: white;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 0.7rem 2rem;
+    font-size: small;
+    line-height: 1;
+    background-color: #8E734A;
+    text-decoration: none;
+    cursor: pointer;
+}

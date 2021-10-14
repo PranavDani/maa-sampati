@@ -119,7 +119,7 @@ const Quotation: FunctionComponent<QuotationProps> = () => {
           ))
         }
       </table>
-      <section className="contact">
+      <section className="contact info-form">
         <form action="" onSubmit={handleSubmit}>
           <label htmlFor="">Name</label>
           <input
@@ -171,7 +171,7 @@ const Quotation: FunctionComponent<QuotationProps> = () => {
             onChange={(e) => setLocation(e.target.value)}
           />
 
-          <button>Request Quotation</button>
+          <button className="request">Request Quotation</button>
         </form>
       </section>
       <Snackbar
