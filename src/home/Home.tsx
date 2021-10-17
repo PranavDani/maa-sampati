@@ -122,7 +122,7 @@ function Home() {
             img={`${process.env.PUBLIC_URL}/assets/categories/imported-granite.jpg`}
           />
         </Link>
-        <Link to="/products/?type=stone&origin=">
+        <Link to="/products/?type=stone&origin=indian">
           <Card
             title="STONE"
             img={`${process.env.PUBLIC_URL}/assets/categories/stone.jpg`}

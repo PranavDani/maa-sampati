@@ -7,19 +7,28 @@ import { getData, store, useQuery, ProductData } from "../Apis";
 import { useEffect, useState } from "react";
 // import { query } from "@firebase/firestore";
 
-interface ProductsProps {}
+interface ProductsProps { }
 
 const Products: FunctionComponent<ProductsProps> = () => {
   const [products, setProducts] = useState<ProductData[]>([]);
   let query = useQuery();
   const type = query.get("type");
   const origin = query.get("origin");
+  const search = query.get("search");
+  // console.log(search)
 
   useEffect(() => {
-    getData(origin, type).then((data) => {
+    getData(origin, type, search).then((data) => {
       setProducts(data);
     });
   }, []);
+
+  // useEffect(() => {
+  //   getSearchResults(search).then((data) => {
+  //     console.log(data)
+  //     setProducts(data)
+  //   })
+  // }, [search])
   return (
     <>
       <div className="focus-image">

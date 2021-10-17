@@ -64,16 +64,45 @@ async function onContactUs(
   return docRef;
 }
 
-async function getData(origin: string | null, type: string | null): Promise<ProductData[]> {
-  const q = query(collection(store, "products"), where("origin", "==", origin), where("type", "==", type));
-  const prodSnapshot = await getDocs(q);
-  const productList = prodSnapshot.docs.map((doc) => {
-    const product: ProductData = doc.data() as ProductData;
-    product.id = doc.id;
-    return product;
-  });
-  return productList;
+async function getData(origin: string | null, type: string | null, name: string | null): Promise<ProductData[]> {
+  if (name) {
+    const q = query(collection(store, "products"), where("name", ">=", name?.toUpperCase()), where("name", "<=", name?.toLowerCase() + "\uf8ff"));
+    const prodSnapshot = await getDocs(q);
+    const productList = prodSnapshot.docs.map((doc) => {
+      const product: ProductData = doc.data() as ProductData;
+      product.id = doc.id;
+      return product;
+    });
+    console.log(productList)
+    console.log(name)
+    // Edit karna baaki hai bohot zyada
+    return productList;
+  }
+  else if (origin == null && type == null && name == null) {
+    const q = query(collection(store, "products"));
+    const prodSnapshot = await getDocs(q);
+    const productList = prodSnapshot.docs.map((doc) => {
+      const product: ProductData = doc.data() as ProductData;
+      product.id = doc.id;
+      return product;
+    });
+    return productList;
+  }
+  else {
+    const q = query(collection(store, "products"), where("origin", "==", origin), where("type", "==", type));
+    const prodSnapshot = await getDocs(q);
+    const productList = prodSnapshot.docs.map((doc) => {
+      const product: ProductData = doc.data() as ProductData;
+      product.id = doc.id;
+      return product;
+    });
+    return productList;
+  }
 }
+
+// async function getSearchResults(name: string | null): Promise<ProductData[]> {
+
+// }
 
 async function getProduct(id: string) {
   const prod = doc(store, "products", id);
