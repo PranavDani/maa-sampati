@@ -6,12 +6,10 @@ import Quotation from "./quotation/Quotation";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Products from "./products/Products";
 import "./App.css";
-// import { useState } from "react";
 
 export interface AppProps { }
 
 const App: React.FunctionComponent<AppProps> = () => {
-  // const [appState, setAppState] = useState('')
 
   return (
     <Router>

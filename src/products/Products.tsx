@@ -21,7 +21,7 @@ const Products: FunctionComponent<ProductsProps> = () => {
     getData(origin, type, search).then((data) => {
       setProducts(data);
     });
-  }, []);
+  }, [search]);
 
   // useEffect(() => {
   //   getSearchResults(search).then((data) => {

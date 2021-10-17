@@ -5,7 +5,6 @@ import { Link, useHistory } from "react-router-dom";
 import { getData } from "../Apis";
 import { useQuery } from "../Apis";
 import SearchBar from "./Search";
-import { useState } from "react"
 
 
 
@@ -14,14 +13,11 @@ function Header() {
   const search = query.get("search")
 
   const history = useHistory()
-  // const [searchTerm, setSearchTerm] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
     const value = e.target.search.value
     history.push(`/products/?search=${value}`);
-    // console.log(e.target.search.value)
-    // props.function(value)
   }
   return (
     <header className="header">
