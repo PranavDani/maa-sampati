@@ -5,6 +5,7 @@ import { Link, useHistory } from "react-router-dom";
 import { getData } from "../Apis";
 import { useQuery } from "../Apis";
 import SearchBar from "./Search";
+import { scrollContact } from "../home/Home"
 
 
 
@@ -19,6 +20,12 @@ function Header() {
     const value = e.target.search.value
     history.push(`/products/?search=${value}`);
   }
+
+  // const handleClick = () => {
+
+  // }
+
+
   return (
     <header className="header">
       <Link to="/">
@@ -29,32 +36,31 @@ function Header() {
       </Link>
 
       <ul className="header-list">
-        <li>
-          <Link to="/products">
-            <a aria-haspopup="true">PRODUCTS</a>
-          </Link>
-          {/* <ul className="dropdown" aria-label="submenu">
+        <Link to="/products">
+          <li>PRODUCTS
+            {/* <ul className="dropdown" aria-label="submenu">
             <li className="menu-item">
-              <a>Indian Marble</a>
+            <a>Indian Marble</a>
             </li>
             <li className="menu-item">
-              <a>Imported Marble</a>
+            <a>Imported Marble</a>
             </li>
             <li className="menu-item">
-              <a>Indian Granite</a>
+            <a>Indian Granite</a>
             </li>
             <li className="menu-item">
-              <a>Imported Granite</a>
+            <a>Imported Granite</a>
             </li>
             <li className="menu-item">
-              <a>Stone</a>
+            <a>Stone</a>
             </li>
             <li className="menu-item">
-              <a>Composite</a>
+            <a>Composite</a>
             </li>
           </ul> */}
-        </li>
-        <li>CONTACT US</li>
+          </li>
+        </Link>
+        <li onClick={scrollContact}>CONTACT US</li>
         <li>ABOUT US</li>
       </ul>
       <div className="rightheader">

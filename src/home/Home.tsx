@@ -2,7 +2,7 @@
 import "react-animated-slider/build/horizontal.css";
 import "./Home.css";
 import Card from "../components/Card";
-import React from "react";
+import React, { useRef } from "react";
 import Carousel from "react-material-ui-carousel";
 import { Paper, Snackbar } from "@material-ui/core";
 import { onContactUs, getData, store } from "../Apis";
@@ -10,6 +10,7 @@ import useFetch from "../useFetch";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Label } from "@material-ui/icons";
+import { useHistory } from 'react-router-dom';
 import Favicon from 'react-favicon'
 import MapSection from '../components/Map' // import the map here
 
@@ -33,6 +34,11 @@ const content: Array<CarouselItemProps> = [
   },
 ];
 
+
+function scrollContact() {
+  console.log("scroll")
+}
+
 function Home() {
   const [open, setOpen] = React.useState(false);
   const location = {
@@ -40,6 +46,8 @@ function Home() {
     lat: 19.096500,
     lng: 72.853350,
   }
+  const myRef: any = useRef(null)
+  const executeScroll = () => myRef.current.scrollIntoView()
 
   const showSnackBar = () => {
     setOpen(true);
@@ -138,7 +146,7 @@ function Home() {
 
       <h1>CONTACT US</h1>
       <div className="box">
-        <div className="contact">
+        <div ref={myRef} className="contact">
           <form action="" onSubmit={handleSubmit}>
             <label htmlFor="">Name</label>
             <input
@@ -222,4 +230,4 @@ function Home() {
   );
 }
 
-export default Home;
+export { Home, scrollContact };

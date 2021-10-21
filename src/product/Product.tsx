@@ -5,12 +5,14 @@ import { getProduct, ProductData } from "../Apis";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Snackbar } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 interface ProductProps { }
 
 const Product: FunctionComponent<ProductProps> = () => {
   const [product, setProduct] = useState<ProductData>({} as ProductData);
   const [open, setOpen] = React.useState(false);
   const { id } = useParams("id");
+  const history = useHistory()
 
   useEffect(() => { }, []);
 
@@ -68,9 +70,7 @@ const Product: FunctionComponent<ProductProps> = () => {
             <button onClick={() => isRequestedForQuote() ? removeFromQuote() : addForQuote()}>
               {isRequestedForQuote() ? "Remove" : "Add"} for Quotation
             </button>
-            <a href="https://wa.me/919321028200">
-              <button>Enquire Now</button>
-            </a>
+            <button onClick={() => window.location.href = "https://wa.me/919321028200"}>Enquire Now</button>
           </div>
         </div>
       </div>
