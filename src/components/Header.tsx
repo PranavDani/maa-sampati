@@ -5,7 +5,6 @@ import { Link, useHistory } from "react-router-dom";
 import { getData } from "../Apis";
 import { useQuery } from "../Apis";
 import SearchBar from "./Search";
-import { scrollContact } from "../home/Home"
 
 
 
@@ -27,7 +26,7 @@ function Header() {
 
 
   return (
-    <header className="header">
+    <header className="header" id="header">
       <Link to="/">
         <div className="logo">
           <img src={logo} alt="Maa Sampati Logo" />
@@ -60,7 +59,9 @@ function Header() {
           </ul> */}
           </li>
         </Link>
-        <li onClick={scrollContact}>CONTACT US</li>
+        <a href="/#contact-us">
+          <li >CONTACT US</li>
+        </a>
         <li>ABOUT US</li>
       </ul>
       <div className="rightheader">

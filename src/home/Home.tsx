@@ -14,6 +14,7 @@ import { useHistory } from 'react-router-dom';
 import Favicon from 'react-favicon'
 import MapSection from '../components/Map' // import the map here
 
+
 interface CarouselItemProps {
   title: string;
   image: string;
@@ -34,10 +35,6 @@ const content: Array<CarouselItemProps> = [
   },
 ];
 
-
-function scrollContact() {
-  console.log("scroll")
-}
 
 function Home() {
   const [open, setOpen] = React.useState(false);
@@ -143,7 +140,7 @@ function Home() {
           />
         </Link>
       </section>
-
+      <div id="contact-us" style={{ height: `${document.querySelector("#header")?.clientHeight}px` }}></div>
       <h1>CONTACT US</h1>
       <div className="box">
         <div ref={myRef} className="contact">
@@ -230,4 +227,4 @@ function Home() {
   );
 }
 
-export { Home, scrollContact };
+export default Home;

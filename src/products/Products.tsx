@@ -5,6 +5,8 @@ import "./products.css";
 import { Link } from "react-router-dom";
 import { getData, store, useQuery, ProductData } from "../Apis";
 import { useEffect, useState } from "react";
+import TemporaryDrawer from "../components/Filter"
+import { Drawer } from "@material-ui/core";
 // import { query } from "@firebase/firestore";
 
 interface ProductsProps { }
@@ -12,13 +14,14 @@ interface ProductsProps { }
 const Products: FunctionComponent<ProductsProps> = () => {
   const [products, setProducts] = useState<ProductData[]>([]);
   let query = useQuery();
+  const color = query.get("color")
   const type = query.get("type");
   const origin = query.get("origin");
   const search = query.get("search");
   // console.log(search)
 
   useEffect(() => {
-    getData(origin, type, search).then((data) => {
+    getData(color, origin, type, search).then((data) => {
       setProducts(data);
     });
   }, [search]);
@@ -44,8 +47,9 @@ const Products: FunctionComponent<ProductsProps> = () => {
       </div>
       <div className="transition-shade"></div>
 
-      <button className="outlined-button">
-        <FilterList /> Filter
+      <button className="outlined-button" >
+        {/* <FilterList /> Filter */}
+        <TemporaryDrawer />
       </button>
 
       <section className="gridview">

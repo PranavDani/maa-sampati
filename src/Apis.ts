@@ -64,45 +64,41 @@ async function onContactUs(
   return docRef;
 }
 
-async function getData(origin: string | null, type: string | null, name: string | null): Promise<ProductData[]> {
+function getProductQuery(color: string | null, origin: string | null, type: string | null, name: string | null) {
   if (name) {
-    const q = query(collection(store, "products"), where("name", ">=", name?.toUpperCase()), where("name", "<=", name?.toLowerCase() + "\uf8ff"));
-    const prodSnapshot = await getDocs(q);
-    const productList = prodSnapshot.docs.map((doc) => {
-      const product: ProductData = doc.data() as ProductData;
-      product.id = doc.id;
-      return product;
-    });
-    console.log(productList)
-    console.log(name)
-    // Edit karna baaki hai bohot zyada
-    return productList;
+    return query(collection(store, "products"), where("name", ">=", name?.toUpperCase()), where("name", "<=", name?.toLowerCase() + "\uf8ff"));
+  }
+  else if (color) {
+    return query(collection(store, "products"), where("colors", "array-contains", color));
+  }
+  else if (origin) {
+    return query(collection(store, "products"), where("origin", "==", origin.toLowerCase()));
+  }
+  else if (type) {
+    return query(collection(store, "products"), where("type", "==", type.toLowerCase()));
   }
   else if (origin == null && type == null && name == null) {
-    const q = query(collection(store, "products"));
-    const prodSnapshot = await getDocs(q);
-    const productList = prodSnapshot.docs.map((doc) => {
-      const product: ProductData = doc.data() as ProductData;
-      product.id = doc.id;
-      return product;
-    });
-    return productList;
+    return query(collection(store, "products"));
   }
   else {
-    const q = query(collection(store, "products"), where("origin", "==", origin), where("type", "==", type));
-    const prodSnapshot = await getDocs(q);
-    const productList = prodSnapshot.docs.map((doc) => {
-      const product: ProductData = doc.data() as ProductData;
-      product.id = doc.id;
-      return product;
-    });
-    return productList;
+    return query(collection(store, "products"), where("origin", "==", origin), where("type", "==", type));
   }
 }
 
-// async function getSearchResults(name: string | null): Promise<ProductData[]> {
 
-// }
+async function getData(color: string | null, origin: string | null, type: string | null, name: string | null): Promise<ProductData[]> {
+  const prodSnapshot = await getDocs(getProductQuery(color, origin, type, name));
+  const productList = prodSnapshot.docs.map((doc) => {
+    const product: ProductData = doc.data() as ProductData;
+    product.id = doc.id;
+    return product;
+  });
+  console.log(productList)
+  console.log(name)
+  // Edit karna baaki hai bohot zyada
+  return productList;
+
+}
 
 async function getProduct(id: string) {
   const prod = doc(store, "products", id);
