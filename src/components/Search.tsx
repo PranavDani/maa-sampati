@@ -38,7 +38,6 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         inputInput: {
             padding: theme.spacing(1, 1, 1, 0),
-            // vertical padding + font size from searchIcon
             paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
             transition: theme.transitions.create('width'),
             width: '100%',
@@ -56,9 +55,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const handleSubmit = (e) => {
     e.preventDefault()
-    // const value = e.target.search.value
-    // history.push(`/products/?search=${value}`);
-    // console.log(e.target.search.value)
 }
 
 export default function SearchBar() {
@@ -69,19 +65,15 @@ export default function SearchBar() {
             <div className={classes.searchIcon}>
                 <SearchIcon />
             </div>
-            {/* <form onSubmit={handleSubmit}> */}
             <InputBase
-                // placeholder="Search"
                 classes={{
                     root: classes.inputRoot,
                     input: classes.inputInput,
                 }}
                 inputProps={{ 'aria-label': 'search', 'name': 'search' }}
-                // onSubmit={console.log(classes.inputInput)}
                 onChange={event => { setSearchTerm(event.target.value) }}
                 onSubmit={handleSubmit}
             />
-            {/* </form> */}
         </div>
     );
 }

@@ -5,13 +5,8 @@ import Card from "../components/Card";
 import React, { useRef } from "react";
 import Carousel from "react-material-ui-carousel";
 import { Paper, Snackbar } from "@material-ui/core";
-import { onContactUs, getData, store } from "../Apis";
-import useFetch from "../useFetch";
-import { useEffect, useState } from "react";
+import { onContactUs } from "../Apis";
 import { Link } from "react-router-dom";
-import { Label } from "@material-ui/icons";
-import { useHistory } from 'react-router-dom';
-import Favicon from 'react-favicon'
 import MapSection from '../components/Map' // import the map here
 
 

@@ -1,8 +1,7 @@
 import logo from "../assets/logo.svg";
-import { Search, ShoppingCart } from "@material-ui/icons";
+import { ShoppingCart } from "@material-ui/icons";
 import "./Header.css";
 import { Link, useHistory } from "react-router-dom";
-import { getData } from "../Apis";
 import { useQuery } from "../Apis";
 import SearchBar from "./Search";
 
@@ -20,11 +19,6 @@ function Header() {
     history.push(`/products/?search=${value}`);
   }
 
-  // const handleClick = () => {
-
-  // }
-
-
   return (
     <header className="header" id="header">
       <Link to="/">
@@ -37,26 +31,6 @@ function Header() {
       <ul className="header-list">
         <Link to="/products">
           <li>PRODUCTS
-            {/* <ul className="dropdown" aria-label="submenu">
-            <li className="menu-item">
-            <a>Indian Marble</a>
-            </li>
-            <li className="menu-item">
-            <a>Imported Marble</a>
-            </li>
-            <li className="menu-item">
-            <a>Indian Granite</a>
-            </li>
-            <li className="menu-item">
-            <a>Imported Granite</a>
-            </li>
-            <li className="menu-item">
-            <a>Stone</a>
-            </li>
-            <li className="menu-item">
-            <a>Composite</a>
-            </li>
-          </ul> */}
           </li>
         </Link>
         <a href="/#contact-us">
@@ -65,13 +39,7 @@ function Header() {
         <li>ABOUT US</li>
       </ul>
       <div className="rightheader">
-        {/* <Link to={`/products/?search=${"Volakas"}`}> */}
-        {/* <Search /> */}
-        {/* <form onSubmit={handleSubmit}> */}
-        {/* </form> */}
-        {/* </Link> */}
         <form onSubmit={handleSubmit}>
-          {/* <input className="search" type="text" placeholder="Search" name="search" onChange={event => { setSearchTerm(event.target.value) }} /> */}
           <SearchBar />
         </form>
         <Link to="/quotation">

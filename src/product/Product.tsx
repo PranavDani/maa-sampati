@@ -1,18 +1,15 @@
 import React, { FunctionComponent } from "react";
 import "./product.css";
-import Card from "../components/Card";
 import { getProduct, ProductData } from "../Apis";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Snackbar } from "@material-ui/core";
-import { useHistory } from "react-router-dom";
 interface ProductProps { }
 
 const Product: FunctionComponent<ProductProps> = () => {
   const [product, setProduct] = useState<ProductData>({} as ProductData);
   const [open, setOpen] = React.useState(false);
   const { id } = useParams("id");
-  const history = useHistory()
 
   useEffect(() => { }, []);
 
@@ -74,22 +71,6 @@ const Product: FunctionComponent<ProductProps> = () => {
           </div>
         </div>
       </div>
-      {/* <div className="product-info">
-        <p>Some more info About this product</p>
-        <p>Some more info About this product</p>
-        <p>Some more info About this product</p>
-        <p>Some more info About this product</p>
-      </div> */}
-      {/* <h1>You May Also Like</h1>
-      <section className="gridview">
-        <Card title="INDIAN MARBLE" img="indian-marble.jpg" />
-        <Card title="IMPORTED MARBLE" img="imported-marble.jpg" />
-        <Card title="INDIAN GRANITE" img="indian-granite.jpg" />
-        <Card title="IMPORTED GRANITE" img="imported-granite.jpg" />
-        <Card title="STONE" img="stone.jpg" />
-        <Card title="COMPOSITE" img="composite.jpg" />
-      </section> */}
-
       <Snackbar
         anchorOrigin={{
           vertical: "bottom",

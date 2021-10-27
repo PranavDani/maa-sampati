@@ -1,13 +1,10 @@
 import React, { FunctionComponent } from "react";
 import Card from "../components/Card";
-import { FilterList } from "@material-ui/icons";
 import "./products.css";
 import { Link } from "react-router-dom";
-import { getData, store, useQuery, ProductData } from "../Apis";
+import { getData, useQuery, ProductData } from "../Apis";
 import { useEffect, useState } from "react";
 import TemporaryDrawer from "../components/Filter"
-import { Drawer } from "@material-ui/core";
-// import { query } from "@firebase/firestore";
 
 interface ProductsProps { }
 
@@ -18,7 +15,6 @@ const Products: FunctionComponent<ProductsProps> = () => {
   const type = query.get("type");
   const origin = query.get("origin");
   const search = query.get("search");
-  // console.log(search)
 
   useEffect(() => {
     getData(color, origin, type, search).then((data) => {
@@ -26,12 +22,6 @@ const Products: FunctionComponent<ProductsProps> = () => {
     });
   }, [search]);
 
-  // useEffect(() => {
-  //   getSearchResults(search).then((data) => {
-  //     console.log(data)
-  //     setProducts(data)
-  //   })
-  // }, [search])
   return (
     <>
       <div className="focus-image">
@@ -48,7 +38,6 @@ const Products: FunctionComponent<ProductsProps> = () => {
       <div className="transition-shade"></div>
 
       <button className="outlined-button" >
-        {/* <FilterList /> Filter */}
         <TemporaryDrawer />
       </button>
 

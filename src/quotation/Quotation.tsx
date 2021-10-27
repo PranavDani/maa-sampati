@@ -9,6 +9,7 @@ interface QuotationProps { }
 
 const Quotation: FunctionComponent<QuotationProps> = () => {
   const [open, setOpen] = useState(false);
+  const [openError, setOpenError] = useState(false);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -18,7 +19,13 @@ const Quotation: FunctionComponent<QuotationProps> = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    let isValid = true;
     const dataProds = products.map((prod) => {
+      if (prod.quantity && prod.height && prod.width && prod.depth) {
+        setOpenError(true);
+        isValid = false;
+        return;
+      }
       return {
         id: prod.id,
         title: prod.title,
@@ -28,13 +35,15 @@ const Quotation: FunctionComponent<QuotationProps> = () => {
         width: prod.width,
         depth: prod.depth,
       } as QuoteProduct;
-    });
-    addForQuote(name, phone, email, message, location, dataProds).then((res) => {
-      showSnackBar();
-      localStorage.clear();
-      getProducts();
-      e.target.reset();
-    });
+    }) as QuoteProduct[];
+    if (isValid) {
+      addForQuote(name, phone, email, message, location, dataProds).then((res) => {
+        showSnackBar();
+        localStorage.clear();
+        getProducts();
+        e.target.reset();
+      });
+    }
   };
 
   const showSnackBar = () => {
@@ -48,7 +57,7 @@ const Quotation: FunctionComponent<QuotationProps> = () => {
     if (reason === "clickaway") {
       return;
     }
-
+    setOpenError(false);
     setOpen(false);
   };
 
@@ -183,6 +192,16 @@ const Quotation: FunctionComponent<QuotationProps> = () => {
         autoHideDuration={2000}
         onClose={handleClose}
         message="You will soon receive our response"
+      />
+      <Snackbar
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+        open={openError}
+        autoHideDuration={2000}
+        onClose={handleClose}
+        message="Please fill all the fields"
       />
     </div>
   );
