@@ -33,13 +33,13 @@ export interface QuoteProduct {
 }
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB1IBSJlqo6UwSQdVKmI1-_duHJKz8RKfU",
-  authDomain: "edjwjj.firebaseapp.com",
-  projectId: "edjwjj",
-  storageBucket: "edjwjj.appspot.com",
-  messagingSenderId: "801713437383",
-  appId: "1:801713437383:web:e617ed65d2947a38cd5ce2",
-  measurementId: "G-6ZQ6LH57NH",
+  apiKey: "*****",
+  authDomain: "*****",
+  projectId: "*****",
+  storageBucket: "*****",
+  messagingSenderId: "*****",
+  appId: "*****",
+  measurementId: "*****",
 };
 
 // Initialize Firebase
